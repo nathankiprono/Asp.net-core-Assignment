@@ -1,0 +1,155 @@
+﻿@model General
+@{
+    ViewData["Title"] = "WaitingPage";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<div class="row" style="background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+    <div class="col-8">
+
+        <div style="margin:8px;padding:8px;text-align:left">
+            <div style="color:black;font-size:xx-large;" class="text-capitalize"> Services</div>
+            <div style="color:gray;font-size:small;" class="text-capitalize"> Services</div>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div style="margin:8px;padding:8px;text-align:end">
+@*             <a asp-action="CheckinPage" asp-controller="Queue" style="background:#0670ba;padding:4px;border-radius:8px;color:white"><i class="fa fa-eye" aria-hidden="true"></i>  Select New Services</a>
+ *@        </div>
+    </div>
+</div>
+
+<hr />
+
+<div style="padding:8px;margin:8px;border-radius:16px;background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+    <table class="table  table-striped table-bordered table-responsive-lg  table-sm" id="loans" style="color:black">
+        <thead style="background-color:#0f1230;color:white">
+            <tr>
+                <th>
+                    Customer
+                </th>
+                <th>
+                    Service Name
+                </th>
+                <th>
+                    Ticket Number
+
+                </th>
+                <th>
+                    Check in Time
+                </th>
+                <th>
+                   Service
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                   
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.check_Ins)
+            {
+                var servicename = "n/a";
+
+
+
+                var servicenames = Model.services.FirstOrDefault(k => k.Id.ToString() == item.Servicetypes);
+                if (servicenames != null)
+                {
+                    servicename = servicenames.ServiceName;
+
+                }
+                <tr>
+                    <td>
+                        @item.CustomerName
+                    </td>
+                    <td>
+                        @servicename
+                    </td>
+                    <td>
+                        @item.TicketNo
+                    </td>
+                    <td>
+                        @item.CheckinTime.ToLongTimeString()
+                    </td>
+                    <td>
+                        @item.description
+                    </td>
+
+                    <td>
+                        @if (item.Status == 0)
+                        {
+                            <div class="btn btn-success">Waiting</div>
+                        }
+
+                    </td>
+                    <td>
+
+                        <button class="btn btn-primary" onclick="printticket()">Print Ticket</button>
+                      
+
+                    </td>
+                  
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="print" hidden>
+
+    <table>
+
+        <thead>
+            <tr></tr>
+        </thead>
+
+        @foreach (var item in Model.check_Ins)
+        {
+
+            <tbody>
+                <tr>
+
+                    <td>
+                        <br />
+                      
+                        <strong style="padding-left:120px;font-size:x-large" class="text-center">Ticket</strong>
+                        <br />
+                        <br />
+                        <br />
+                        <strong style="padding-left:120px;font-size:large"> Name: @item.CustomerName   </strong>
+                        <br />
+                        <br />
+                        <strong style="padding-left:120px;font-size:large">Ticket Number  :  @item.TicketNo </strong>
+                        <br />
+                        <br />
+                        <strong style="padding-left:120px;font-size:large">Checkin Time  :  @item.CheckinTime.ToShortTimeString() </strong>
+
+                    </td>
+
+
+                
+
+                </tr>
+            </tbody>
+        }
+
+    </table>
+
+  
+  
+</div>
+<script type="text/javascript">
+    function printticket() {
+        const printContents = document.getElementById('print').innerHTML;
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+

@@ -1,0 +1,64 @@
+﻿@model Queue_Management_System.Models.Services
+@{
+    ViewData["Title"] = "Service";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+<div class="row" style="background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+    <div class="col-8">
+
+        <div style="margin:8px;padding:8px;text-align:left">
+            <div style="color:black;font-size:xx-large;" class="text-capitalize">New Service</div>
+            <div style="color:gray;font-size:small;" class="text-capitalize">Create New Service</div>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div style="margin:8px;padding:8px;text-align:end">
+            <a asp-action="ServiceList" asp-controller="Admin" style="background:#0670ba;padding:4px;border-radius:8px;color:white"><i class="fa fa-eye" aria-hidden="true"></i>  View Services</a>
+        </div>
+    </div>
+</div>
+
+<hr />
+<div class="container-fluid" style="color:black;">
+    <div style="padding:8px;margin:8px;border-radius:16px;background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+        <form asp-action="Service" style="padding:30px">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+              
+                <div class="col-md-3">
+                    <label ><strong>Service Provider</strong></label>
+
+                    <select asp-for="Service_Providers" class="form-control" asp-items="@ViewBag.serviceprovider"  id="Interestrate" onchange="getInterestRate()">
+                        <option value="">Select Service Provider...</option>
+                    </select>
+                    <span asp-validation-for="Service_Providers" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label  class="control-label"><strong>Service offered</strong></label>
+                    <input asp-for="ServiceName" autocomplete="off" class="form-control" />
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label"><strong>Opening Hours</strong></label>
+                    <input asp-for="OpeningHours" autocomplete="off" class="form-control" />
+                    <span asp-validation-for="OpeningHours" class="text-danger"></span>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <br />
+                    <input type="submit" value="Create" class="btn btn-secondary" style="background-color:#0f1230" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<br />
+<br
+

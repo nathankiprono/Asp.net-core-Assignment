@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+    <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+    <script src="~/Syncfussion/scripts/ej2.min.js"></script>
+}
+<style>
+    .tabs {
+        border-bottom: solid 2px blue;
+    }
+
+    .card_ {
+        border-radius: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+
+    <div class="container-fluid" style="color:black;">
+        <div class="row" style="background-color:white">
+            <div class="col">
+                <div style="margin:8px;padding:8px">
+
+                    <div style="color:coral;font-size:xx-large;font-weight:bold;" class="text-capitalize">dashboard</div>
+
+
+                </div>
+            </div>
+            <div class="col">
+                <div style="margin:8px;padding:8px;text-align:end">
+                    @DateTime.UtcNow.AddHours(3).ToShortDateString()
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin:8px;padding:20px;background-color:white">
+        <div class="text-center" style="font-size:50px"><strong>Analytic Report</strong></div>
+        
+        
+        <hr />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div style="border-right:3px solid ;color:#009100;">
+
+                            <ejs-accumulationchart id="container" title="Analytic Report Showing Average Waiting Time/Average Service Time Per Service Point" enableSmartLabels="true" pointRender="pointders3">
+                                <e-accumulationchart-legendsettings visible="true">
+                                </e-accumulationchart-legendsettings>
+                                <e-accumulationchart-tooltipsettings enable="true"></e-accumulationchart-tooltipsettings>
+                                <e-accumulation-series-collection>
+                                    <e-accumulation-series explode="true" dataSource="ViewBag.dataSource" xName="xValue" yName="yValue">
+                                        <e-accumulationseries-datalabel name="text" visible="true" position="Outside">
+                                            <e-connectorstyle type="Line" length="2%"></e-connectorstyle>
+                                            <e-font size="16px"></e-font>
+                                        </e-accumulationseries-datalabel>
+                                    </e-accumulation-series>
+                                </e-accumulation-series-collection>
+                            </ejs-accumulationchart>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+                        <div class="card_" style="height:170px;padding-top:50px;border-radius:8px;text-align:center">
+
+                        <div class="btn" style="font-weight:bold;border-radius:8px;color:black;font-size:x-large">@ViewBag.checkins</div>
+                            <div style="font-weight:bold;color:black">Total Customers Served</div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        
+
+        
+        </div>
+
+        <br /><br />
+        <br /><br />
+
+ 
+
+<br />
+<br />
+
+
+<script type="text/javascript">
+    var pointders3 = function (args) {
+        if ((args.point.x).indexOf('Male') > -1) {
+            args.fill = '#597cf9';
+
+        }
+        else if ((args.point.x).indexOf('Female') > -1) {
+            args.fill = '#f4bc42';
+        }
+
+
+
+    }
+
+
+
+</script>
+

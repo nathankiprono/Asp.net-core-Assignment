@@ -1,0 +1,60 @@
+﻿@model Queue_Management_System.Models.Check_In
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<div class="row" style="background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+  
+    
+    <div class="col-8">
+
+        <div style="margin:8px;padding:8px;text-align:left">
+            <div style="color:black;font-size:xx-large;" class="text-capitalize"> Check In Details     </div>
+            <div style="color:gray;font-size:small;" class="text-capitalize">Check In Details    </div>
+        </div>
+
+    </div>
+ 
+  
+</div>
+<div class="container-fluid">
+
+   
+    <div style="padding:20px;margin:8px;border-radius:16px;background-color:white;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)">
+        <h4 class="text-black"><strong>Check In Detail </strong> </h4>
+    <hr />
+      
+            
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Ticket Number
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.TicketNo)
+                </dd>
+             
+              
+            </dl>
+            <div class="row">
+                <div class="col-m-3">
+                    <a asp-action="ServicePoint" asp-controller="Queue" class="btn btn-primary"  >Recall</a>
+                </div>&nbsp;&nbsp;&nbsp;
+              <form  asp-action="Finished">
+            <input type="hidden" name="Id" value="@ViewBag.id"  />
+                <div class="col-m-3">
+                  <input type="submit" value="Make as finish" class="btn btn-primary" />
+                   
+                </div>
+            </form>
+                &nbsp;&nbsp;&nbsp;
+                  <form  asp-action="Noshow">
+            <input type="hidden" name="Id" value="@ViewBag.id"  />
+                <div class="col-m-3">
+                    <input type="submit" value="Make as No Show" class="btn btn-primary" />
+                   
+                </div>
+                </form>
+               </div>
+           
+</div>
+</div>

@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginPage.cshtml";
+
+}
+<style>
+    .castomtextbox {
+        padding: 8px;
+        color: black;
+        width: 100%;
+        margin-top: 8px;
+        background-color: #cad0fa;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .castombuttonnn {
+        padding: 8px;
+        color: black;
+        width: 100%;
+        margin-top: 8px;
+        background-color: white;
+        border: solid 2px #1029de;
+        border-radius: 8px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-10">
+            @if (TempData["success"] != null)
+            {
+                <div class="text-center text-success p-2">
+                    <strong>Success!!..</strong>@TempData["success"]
+                </div>
+            }
+            <div style="padding:8px;margin:8px">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div style="padding:8px;margin-top:8px;text-align:center">
+                            <img src="~/Icons/Workforce.jpg" style="max-height:250px;width:auto" class="img-fluid" />
+                        </div>
+                        <div style="text-align:center;font-size:xx-large;color:#ffc107;font-weight:bold">Queue Management System. </div>
+                        <div style="font-size:large;color:black;text-align:center">
+                           
+
+                        </div>
+                        <div style="font-size:large;color:black;text-align:center">
+                            Website:www.workforceafrica.co.
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form asp-action="LoginUser" method="post">
+                            <div style="padding:8px;margin:8px">
+                                <input type="text" name="UserName" autocomplete="off" class="castombuttonnn" style="margin-top:80px" placeholder="username" /><br />
+                                <input type="password" name="Password" class="castombuttonnn" placeholder="password" /><br /><br />
+                                <input type="submit" class="castomtextbox" value="Login" />
+                            </div>
+                        </form>
+                        @if (TempData["Err"] != null)
+                        {
+                            <div class="text-center text-danger p-2">
+                                <strong>Opps!!..</strong>@TempData["Err"]
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+

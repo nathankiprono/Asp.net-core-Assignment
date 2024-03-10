@@ -1,0 +1,171 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var UserName = HttpContextAccessor.HttpContext.Session.GetString("UserGroup");
+}
+
+
+<aside class="main-sidebar border-bottom box-shadow" style="background-color:#0f1230;color:white;box-shadow: 1px 6px 22px 3px rgba(0,0,0,0.1);">
+
+    <!-- sid;white-sbar: style can be found in sidebar.less -->
+    <section class="sidebar text-white" style="height: auto;color:white">
+
+        <ul class="sidebar-menu " data-widget="tree">
+            @if (UserName == "Admin")
+            {
+                <li class="treeview" style="height: auto;color:red">
+                    <a asp-action="Dashboard" style="color:white" onclick="navigate()" asp-controller="Home">
+                    <i class="fal fa-tachometer-alt-slowest"></i>
+                    <span>
+                        <b>Dashboard</b>
+
+                    </span>
+                </a>
+                <script>
+                    
+                    function navigate() {
+                        window.location = 'https://localhost:7113/Admin/Dashboard';
+                         }
+                </script>
+
+
+            </li>
+            }
+            @if (UserName == "Users")
+            {
+           
+            <li class="treeview" style="height: auto;color:white">
+                <a  style="color:white">
+                    <i class="fa fa-users"></i>
+                    <span>Check In <br /><span style="margin-left:24px;font-size:x-small">Select/manage services</span></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu" style="display: none;">
+                    <li>
+                            <a asp-action="CheckinPage" asp-controller="Queue">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Select Services
+                        </a>
+                    </li>
+                    <li>
+                            <a asp-action="CheckinList" asp-controller="Queue">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            Manage Services
+                        </a>
+                    </li>
+
+                </ul>
+              
+
+            </li>
+            }
+            @if (UserName == "Providers")
+            {
+                <li class="treeview" style="height: auto;color:white">
+                    <a style="color:white">
+                    <i class="" style="font-size:20px"></i>
+                    <span>Service Providers <br /><span style="margin-left:24px;font-size:x-small">Add/manage Service Providers</span></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu" style="display: none;">
+                   
+                    <li>
+                            <a asp-action="ServicePoint" asp-controller="Queue">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            Manage Services
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </li>
+            }
+
+
+            @if (UserName == "Admin")
+            {
+                <li class="treeview" style="height: auto;color:white">
+                    <a style="color:white">
+                    
+                    <i class="fas fa" style="font-size:20px"></i>
+                    <span>Services Configuration  <br /><span style="margin-left:24px;font-size:x-small">Configuration </span></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu" style="display: none;">
+                        <li>
+                            <a asp-action="ServiceProviders" asp-controller="Admin">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Create New Service Provider
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="ServiceProvidersList" asp-controller="Admin">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                Manage Service Provider
+                            </a>
+                        </li>
+                    <li>
+                            <a asp-action="Service" asp-controller="Admin">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Create New Service Point
+                        </a>
+                    </li>
+                    <li>
+                            <a asp-action="ServiceList" asp-controller="Admin">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            Manage Service Point
+                        </a>
+                    </li>
+                   
+
+                </ul>
+
+
+            </li>
+       }
+            @if (UserName == "Admin")
+            {
+                <li class="treeview" style="height: auto;color:white">
+                    <a  style="color:white">
+                    <i class="fas fa-files" style="font-size:20px"></i>
+                    <span>Analytic Reports <br /><span style="margin-left:24px;font-size:x-small">Add/manage report </span></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu" style="display: none;">
+                    <li>
+                            <a asp-controller="Admin" asp-action="Dashboard">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                View Analytic Reports
+                        </a>
+                    </li>
+                   
+
+                </ul>
+
+
+            </li>
+
+
+            }
+
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
+<script src="~/dist/js/adminlte.min.js"></script>

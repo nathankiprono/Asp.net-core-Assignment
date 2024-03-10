@@ -1,0 +1,150 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+
+   
+    var Username = HttpContextAccessor.HttpContext.Session.GetString("UserName");
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Fontawsome.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Icons/Workforce.jpg" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link href="~/Printer/print.min.css" rel="stylesheet" />
+    <script src="~/Printer/print.min.js"></script>
+
+
+    <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+    <script src="~/Syncfussion/scripts/ej2.min.js"></script>
+    <link href="~/css/Scrollbar.css" rel="stylesheet" />
+    <meta name="msapplication-navbutton-color" content="black">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="black">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="black">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/dist/css/skins/skin-blue.min.css">
+    <script src="~/dist/js/JavaScript.js"></script>
+    <link href="~/Settings/mainlogooo.png" rel="icon" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]  -Queue Management System</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/Syncfussion/styles/material.css" rel="stylesheet" />
+    <script src="~/Syncfussion/scripts/ej2.min.js"></script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini bg-white">
+    <div class="">
+        <header class="main-header border-bottom box-shadow">
+            <a href="#" class="logo" style="background-color:white">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">  <img src="~/Icons/Workforce.jpg" onerror="this.src='/Icons/Workforce.jpg'" style="width:auto;height:30px;" class="user-image" alt="F"></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg" style="color:black">
+                    <img src="~/Icons/Workforce.jpg" onerror="this.src='/Icons/Workforce.jpg'" style="width:auto;height:30px" class="user-image" alt="F">
+                    <span style="margin-right:1px">Queue Management System</span>
+                </span>
+            </a>
+
+        </header>
+
+        <style>
+            .Categoryyy {
+                color: black;
+            }
+
+                .Categoryyy:hover {
+                    background-color: ghostwhite;
+                    border-left: solid 3px black;
+                }
+        </style>
+
+        <partial name="_DshboardsideMenu" />
+        <div class="content-wrapper" style="background-color:#dfdefa;font-family:'Century Gothic';font-size:small">
+
+         
+            <div style="padding-left:24px;padding-right:24px;padding-top:4px;padding-bottom:4px;background-color:white;" class="border-bottom box-shadow">
+                @if (Username != null)
+                {
+                    <form asp-action="Logoff" asp-controller="Account">
+                        <div class="row">
+                            <div class="col-sm-2 col-2 text-left">
+                                <img data-toggle="push-menu" style="height:30px;width:30px" src="~/Icons/right-arrow.png" />  <span style="color:black">
+                            </div>
+                            <div class="col-sm-10 col-10 text-right text-black">
+                                <span class="btn-sm btn-primary" onclick="RedirectToNotification()" style="margin-right:24px;">Notification (0)</span> |
+                                <button style="margin-right:16px" class=" text-black"
+                                        onclick="RedirectToProfile()"
+                                        id="navbarDropdownMenuLink"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false">
+                                    <img src=""
+                                         class="rounded-circle"
+                                         height="22"
+                                         onerror="this.src='/Icons/ProfilePic.png'"
+                                         style="border:solid 1px white"
+                                         alt=""
+                                         loading="lazy" />
+                                    <strong style="padding:8px">Welcome @Username</strong>
+
+                                </button>
+                                |
+                                <span>
+
+                                    <button class="btn-sm" type="submit" style="color:red">  Log Out</button>
+
+                                </span>
+                            </div>
+                        </div>
+
+                    </form>
+                }
+              
+
+            </div>
+            @RenderBody()
+        </div>
+
+        <footer class="border-top footer text-muted text-center">
+            <div class="container">
+                &copy; @DateTime.Now.Year - Queue Management System
+            </div>
+        </footer>
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        </environment>
+
+        <script src="~/javascript/JavaScript.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <ejs-scripts></ejs-scripts>
+        @RenderSection("Scripts", required: false)
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿
+@model General
+ 
+@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Save", "Queue", FormMethod.Post))
+    {
+        <table>
+            @for (int i = 0; i < Model.check_Ins.Count(); i++)
+            {
+                <tr>
+                    <td>
+@*                         <input asp-for="@Model.check_Ins[i].ischecked" type="checkbox" value="@Model.check_Ins[i].ischecked" />
+ *@                        @Html.CheckBoxFor(m => Model.check_Ins[i].ischecked)
+                        
+                    </td>
+                    <td>
+                        <input value="@Model.check_Ins[i].Id"  asp-for="@Model.check_Ins[i].Id"  type="hidden" />
+                        @Html.DisplayFor(m => m.check_Ins[i].Id)
+                    </td>
+                </tr>
+            }
+        </table>
+        <br/>
+        <input type="submit" value="Save"/>
+    }
+</body>
+</html>
